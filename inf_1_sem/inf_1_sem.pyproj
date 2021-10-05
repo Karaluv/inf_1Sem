@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab4\04.py</StartupFile>
+    <StartupFile>lab4\05.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -55,6 +55,9 @@
     <Compile Include="lab5\02.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="lab6\3.1.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lab1\" />
@@ -62,6 +65,7 @@
     <Folder Include="lab3\" />
     <Folder Include="lab4\" />
     <Folder Include="lab5\" />
+    <Folder Include="lab6\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lab3\input.txt" />
