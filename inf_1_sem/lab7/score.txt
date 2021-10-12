@@ -14,7 +14,12 @@ eternity
 eternity
 eternity
 billy
-1020
-70
+300
 10
-60
+10
+10
+gachi
+1140
+30
+30
+10
