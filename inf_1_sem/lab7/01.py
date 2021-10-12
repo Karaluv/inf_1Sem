@@ -52,7 +52,7 @@ Speed = int(input('Maximum speed of the objects: '))
 
 #init part
 pygame.init()
-FPS = 30
+FPS = 60
 screen = pygame.display.set_mode((1200, 900))
 
 #color assign part
@@ -111,7 +111,9 @@ class ball:
         vm - maxim x,y speed of the object
         r = radius of circle or half of rect side
         '''
-        self.r = randint(1,rm)
+        global DrawF,TragectoryF
+        self.spawn = randint(20,300)
+        self.r = randint(int(rm/3),rm)
         self.x = randint(0,xm)
         self.y = randint(0,ym)
         self.vx = randint(-vm,vm)
@@ -122,6 +124,9 @@ class ball:
         if self.type == 1:
             self.color = pl1[randint(0,len(pl1)-1)]
         self.R = self.r**2
+
+        self.draw = DrawF[self.type]
+        self.tragectory = TragectoryF[self.type]
 
     #calculate some useful properties of an object
     def reass(self):
@@ -141,36 +146,67 @@ class ball:
 
         
     #calculate object next frame position
-    def tragectory(self,vm,W,H):
-        '''
-        W,H - screen borders
-        vm - maximum and minimum random speed
-        '''
-        if self.xmin <= 0:
-            self.vx =  randint(0,vm)
-            self.vy =  randint(-vm,vm)
-        if self.xmax >= W:
-            self.vx =  randint(-vm,0)
-            self.vy =  randint(-vm,vm)
-        if self.ymin <= 0:
-            self.vy =  randint(0,vm)
-            self.vx =  randint(-vm,vm)
-        if self.ymax >= H:
-            self.vy =  randint(-vm,0)
-            self.vx =  randint(-vm,vm)
+def tragectory1(self,vm,W,H):
+    '''
+    W,H - screen borders
+    vm - maximum and minimum random speed
+    '''
+    if self.xmin <= 0:
+        self.vx =  randint(0,vm)
+        self.vy =  randint(-vm,vm)
+    if self.xmax >= W:
+        self.vx =  randint(-vm,0)
+        self.vy =  randint(-vm,vm)
+    if self.ymin <= 0:
+        self.vy =  randint(0,vm)
+        self.vx =  randint(-vm,vm)
+    if self.ymax >= H:
+        self.vy =  randint(-vm,0)
+        self.vx =  randint(-vm,vm)
 
-        self.x = self.vx + self.x
-        self.y = self.vy + self.y
+    self.x = self.vx + self.x
+    self.y = self.vy + self.y
 
-    #draw object function
-    def draw(self):
-        '''
-        type - type of an object
-        '''
-        if self.type == 0:
-            pygame.draw.circle(screen,self.color,(self.x,self.y),self.r,0)
-        if self.type == 1:
-            pygame.draw.rect(screen,self.color,(self.xmin,self.ymin,2*self.r,2*self.r),0)
+def tragectory2(self,g,W,H):
+    '''
+    W,H - screen borders
+    g - y axiliration
+    '''
+    if self.xmin <= 0:
+        self.vx =  abs(self.vx)
+        self.x = 0+self.r*2
+    if self.xmax >= W:
+        self.vx =  -abs(self.vx)
+        self.x = W-self.r*2
+    if self.ymin <= 0:
+        self.vy =  abs(self.vy)
+        self.y = 0+self.r*2
+    if self.ymax >= H:
+        self.vy =  -abs(self.vy)
+        self.y = H-self.r*2
+
+    self.vy = self.vy + g
+
+    self.x = self.vx + self.x
+    self.y = self.vy + self.y
+
+TragectoryF = [tragectory1,tragectory2]
+
+#draw object function
+def draw1(self):
+    '''
+    type - type of an object
+    '''
+    pygame.draw.circle(screen,self.color,(self.x,self.y),self.r,0)
+
+
+def draw2(self):
+    '''
+    type - type of an object
+    '''
+    pygame.draw.rect(screen,self.color,(self.xmin,self.ymin,2*self.r,2*self.r),0)
+
+DrawF = [draw1,draw2]
 
 #initialize all objects on screen
 def init(L):
@@ -211,9 +247,12 @@ def update():
     l =len(balls)
 
     for i in range(l):
-        balls[i].reass()
-        balls[i].tragectory(2,W,H)
-        balls[i].draw()
+        if balls[i].spawn > 0:
+            balls[i].spawn -= 1
+        else:
+            balls[i].reass()
+            balls[i].tragectory(balls[i],2,W,H)
+            balls[i].draw(balls[i])
         
     screen.blit(textsurface,(20,20))
    
@@ -226,13 +265,14 @@ def kill(apa):
     global score
 
     for i in apa:
-        if balls[i].type == 1:
-            score = score+30
+        if balls[i].spawn == 0:
+            if balls[i].type == 1:
+                score = score+30
 
-        if balls[i].type == 0:
-            score = score + 60
+            if balls[i].type == 0:
+                score = score + 60
 
-        balls[i] = new_ball()
+            balls[i] = new_ball()
 
     print(score)
 
