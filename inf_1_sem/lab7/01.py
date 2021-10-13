@@ -2,6 +2,7 @@ import pygame
 from random import randint
 import os
 import sys
+from pygame.locals import Color
 
 
 
@@ -123,8 +124,15 @@ class ball:
         self.type = 0
         if self.type == 0:
             self.color = pl0[randint(0,len(pl0)-1)]
+            self.texture = t0[randint(0,len(t0)-1)]
         if self.type == 1:
             self.color = pl1[randint(0,len(pl1)-1)]
+            self.texture = t1[randint(0,len(t1)-1)]
+
+        self.texture = pygame.transform.scale(self.texture,(self.r*2,self.r*2))
+
+        self.mask = pygame.mask.from_surface(self.texture)
+
         self.R = self.r**2
 
         self.draw = DrawF[self.type]
@@ -144,6 +152,7 @@ class ball:
         self.xmin=self.x - self.r
         self.ymax =self.y +self.r
         self.ymin = self.y-self.r
+        self.rect = self.texture.get_rect(center=(self.x, self.y))
 
 
         
@@ -174,6 +183,7 @@ def tragectory2(self,g,W,H):
     W,H - screen borders
     g - y axiliration
     '''
+    g = int(g / 5) 
     if self.xmin <= 0:
         self.vx =  abs(self.vx)
         self.x = 0+self.r*2
@@ -199,14 +209,15 @@ def draw1(self):
     '''
     type - type of an object
     '''
-    pygame.draw.circle(screen,self.color,(self.x,self.y),self.r,0)
+    screen.blit(self.texture,(self.xmin,self.ymin))
 
 
 def draw2(self):
     '''
     type - type of an object
     '''
-    pygame.draw.rect(screen,self.color,(self.xmin,self.ymin,2*self.r,2*self.r),0)
+    #pygame.draw.rect(screen,self.color,(self.xmin,self.ymin,2*self.r,2*self.r),0)
+    screen.blit(self.texture,(self.xmin,self.ymin))
 
 DrawF = [draw1,draw2]
 
@@ -244,7 +255,7 @@ def update():
     '''
     global balls,W,H,score
 
-    textsurface = myfont.render('Your score: '+str(score), False, (0, 0, 0),wh)
+    textsurface = myfont.render('KILL THEM ALL '+str(score), False, (0, 0, 0),wh)
 
     l =len(balls)
 
@@ -301,12 +312,9 @@ def find(event):
                 apy.append(i)
     # checks distance from center for circles and applies changes for rects
     for i in apy:
-        if balls[i].type == 0:
-            l = (balls[i].x - x)**2 + (balls[i].y - y)**2
-
-            if l<balls[i].R:
-                apa.append(i)
-        if balls[i].type ==1:
+        pos_in_mask = x - balls[i].xmin, y - balls[i].ymin
+        touching = balls[i].rect.collidepoint(*event) and balls[i].mask.get_at(pos_in_mask)
+        if touching:
             apa.append(i)
     #returns list of the dead objects
     return apa
@@ -333,6 +341,20 @@ def click(event):
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
+
+kop = pygame.image.load(os.path.join(sys.path[0], 'kop.png')).convert_alpha()
+ech = pygame.image.load(os.path.join(sys.path[0], 'ech.png')).convert_alpha()
+nuh = pygame.image.load(os.path.join(sys.path[0], 'nuh.png')).convert_alpha()
+loh = pygame.image.load(os.path.join(sys.path[0], 'loh.png')).convert_alpha()
+kar = pygame.image.load(os.path.join(sys.path[0], 'kar.png')).convert_alpha()
+
+shiz = pygame.image.load(os.path.join(sys.path[0], 'shiz.png')).convert_alpha()
+nol = pygame.image.load(os.path.join(sys.path[0], 'nol.png')).convert_alpha()
+hz = pygame.image.load(os.path.join(sys.path[0], 'hz.png')).convert_alpha()
+
+t0 = [kop,ech,nuh,loh,kar]
+t1 = [shiz,nol,hz]
+
 #start function
 init(Number_of_objects)
 
@@ -356,7 +378,7 @@ while not finished:
             click(event.pos)
     #draw part
     update()
-    pygame.display.update()
+    pygame.display.flip()
     screen.fill(bl)
     
 
