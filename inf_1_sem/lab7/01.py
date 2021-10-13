@@ -3,7 +3,27 @@ from random import randint
 import os
 import sys
 from pygame.locals import Color
+import pafy
+import vlc
+from pygame import display
+import asyncio
 
+
+
+kadr = 0
+max_kadr = 999-153
+
+url = "https://www.youtube.com/watch?v=B4eSmhr4-2Q"
+video = pafy.new(url)
+best = video.getbest()
+playurl = best.url
+
+Instance = vlc.Instance()
+player = Instance.media_player_new()
+Media = Instance.media_new(playurl)
+player.set_media(Media)
+player.audio_set_volume(90)
+player.play()
 
 
 # load score function
@@ -51,10 +71,23 @@ Number_of_objects = int(input('Number of targets at single time: '))
 Size = int(input('Maximum size of the objects: '))
 Speed = int(input('Maximum speed of the objects: '))
 
+
 #init part
 pygame.init()
-FPS = 144
-screen = pygame.display.set_mode((1200, 900))
+
+
+
+
+
+FPS = 60
+
+infoObject = pygame.display.Info()
+
+screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h),pygame.FULLSCREEN)
+
+
+
+
 
 #color assign part
 cr = (255, 0, 0)
@@ -70,8 +103,10 @@ pl0 = [cr,cb,cy]
 pl1 = [cg,cm,cc]
 
 #set width and high
-W = 1200
-H = 900
+W = infoObject.current_w
+H = infoObject.current_h
+
+
 
 #set start score
 score = 0
@@ -120,8 +155,8 @@ class ball:
         self.y = randint(0,ym)
         self.vx = randint(-vm,vm)
         self.vy = randint(-vm,vm)
-        #self.type = randint(0,1)
         self.type = 0
+
         if self.type == 0:
             self.color = pl0[randint(0,len(pl0)-1)]
             self.texture = t0[randint(0,len(t0)-1)]
@@ -255,7 +290,7 @@ def update():
     '''
     global balls,W,H,score
 
-    textsurface = myfont.render('KILL THEM ALL '+str(score), False, (0, 0, 0),wh)
+    textsurface = myfont.render('FIST THEM ALL '+str(score), False, wh,(0,0,0,255))
 
     l =len(balls)
 
@@ -317,6 +352,12 @@ def find(event):
         if touching:
             apa.append(i)
     #returns list of the dead objects
+    if apa:
+        soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\aaa.mp3'))
+        soundObj.play()
+    else:
+        soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\sorry.mp3'))
+        soundObj.play()
     return apa
 
 #exit function
@@ -342,24 +383,48 @@ pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
 
-kop = pygame.image.load(os.path.join(sys.path[0], 'kop.png')).convert_alpha()
-ech = pygame.image.load(os.path.join(sys.path[0], 'ech.png')).convert_alpha()
-nuh = pygame.image.load(os.path.join(sys.path[0], 'nuh.png')).convert_alpha()
-loh = pygame.image.load(os.path.join(sys.path[0], 'loh.png')).convert_alpha()
-kar = pygame.image.load(os.path.join(sys.path[0], 'kar.png')).convert_alpha()
+#kop = pygame.image.load(os.path.join(sys.path[0], 'kop.png')).convert_alpha()
+#ech = pygame.image.load(os.path.join(sys.path[0], 'ech.png')).convert_alpha()
+#nuh = pygame.image.load(os.path.join(sys.path[0], 'nuh.png')).convert_alpha()
+#loh = pygame.image.load(os.path.join(sys.path[0], 'loh.png')).convert_alpha()
+#kar = pygame.image.load(os.path.join(sys.path[0], 'kar.png')).convert_alpha()
 
-shiz = pygame.image.load(os.path.join(sys.path[0], 'shiz.png')).convert_alpha()
-nol = pygame.image.load(os.path.join(sys.path[0], 'nol.png')).convert_alpha()
-hz = pygame.image.load(os.path.join(sys.path[0], 'hz.png')).convert_alpha()
+#shiz = pygame.image.load(os.path.join(sys.path[0], 'shiz.png')).convert_alpha()
+#nol = pygame.image.load(os.path.join(sys.path[0], 'nol.png')).convert_alpha()
+#hz = pygame.image.load(os.path.join(sys.path[0], 'hz.png')).convert_alpha()
 
-t0 = [kop,ech,nuh,loh,kar]
-t1 = [shiz,nol,hz]
+#t0 = [kop,ech,nuh,loh,kar]
+#t1 = [shiz,nol,hz]
 
+
+k =[]
+def loadK():
+    for i in range(0,999-153):
+        k.append(pygame.image.load(os.path.join(sys.path[0],"kadr\\00"+str(i+153)+'.jpg')).convert_alpha())
+        k[i] = pygame.transform.scale(k[i],(infoObject.current_w, infoObject.current_h))
+
+loadK()
+t=[]
+print((os.path.join(sys.path[0], 'hz.png')))
+def loadG():
+    for i in range(1,32):
+        t.append(pygame.image.load(os.path.join(sys.path[0],"gachi\\"+str(i)+'.png')).convert_alpha())
+loadG()
+t0 = t[0:15]
+t1 = t[16:30]
 #start function
+
+
+
+
+
+
+soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\intro.mp3'))
+soundObj.play()
+
+
+
 init(Number_of_objects)
-
-
-
 
 #main loop
 while not finished:
@@ -377,6 +442,11 @@ while not finished:
             #mouse event part
             click(event.pos)
     #draw part
+    
+    screen.blit(k[int(kadr) ],(0,0))
+    kadr = kadr +0.5
+    if kadr >= max_kadr:
+        kadr =0
     update()
     pygame.display.flip()
     screen.fill(bl)

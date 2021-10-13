@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab7\01.py</StartupFile>
+    <StartupFile>lab8\01.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -86,6 +86,7 @@
     <Folder Include="lab6\" />
     <Folder Include="lab7\" />
     <Folder Include="lab8\" />
+    <Folder Include="lab8\gachi\" />
     <Folder Include="lab9\" />
   </ItemGroup>
   <ItemGroup>
