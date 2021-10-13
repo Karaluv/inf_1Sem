@@ -3,28 +3,34 @@ from random import randint
 import os
 import sys
 from pygame.locals import Color
-import pafy
-import vlc
+try:
+    import pafy
+    import vlc
+except:
+    print("pip install pafy and pip install python-vlc and install vlc media player on your pc pls!!!")
 from pygame import display
-import asyncio
+
 
 
 
 kadr = 0
 max_kadr = 999-153
 
-url = "https://www.youtube.com/watch?v=B4eSmhr4-2Q"
-video = pafy.new(url)
-best = video.getbest()
-playurl = best.url
 
-Instance = vlc.Instance()
-player = Instance.media_player_new()
-Media = Instance.media_new(playurl)
-player.set_media(Media)
-player.audio_set_volume(90)
-player.play()
-
+try:
+    url = "https://www.youtube.com/watch?v=B4eSmhr4-2Q"
+    video = pafy.new(url)
+    best = video.getbest()
+    playurl = best.url
+    
+    Instance = vlc.Instance()
+    player = Instance.media_player_new()
+    Media = Instance.media_new(playurl)
+    player.set_media(Media)
+    player.audio_set_volume(90)
+    player.play()
+except:
+    print("vlc is needed")
 
 # load score function
 def load():
@@ -218,7 +224,7 @@ def tragectory2(self,g,W,H):
     W,H - screen borders
     g - y axiliration
     '''
-    g = int(g / 5) 
+    g = int(g) 
     if self.xmin <= 0:
         self.vx =  abs(self.vx)
         self.x = 0+self.r*2
@@ -396,7 +402,12 @@ finished = False
 #t0 = [kop,ech,nuh,loh,kar]
 #t1 = [shiz,nol,hz]
 
-
+bil=[]
+def loadB():
+    for i in range(0,620-291):
+        bil.append(pygame.image.load(os.path.join(sys.path[0],"Billy\\00"+str(i+291)+'.jpg')).convert_alpha())
+        bil[i] = pygame.transform.scale(bil[i],(infoObject.current_w, infoObject.current_h))
+loadB()
 k =[]
 def loadK():
     for i in range(0,999-153):
@@ -405,11 +416,12 @@ def loadK():
 
 loadK()
 t=[]
-print((os.path.join(sys.path[0], 'hz.png')))
 def loadG():
     for i in range(1,32):
         t.append(pygame.image.load(os.path.join(sys.path[0],"gachi\\"+str(i)+'.png')).convert_alpha())
 loadG()
+
+
 t0 = t[0:15]
 t1 = t[16:30]
 #start function
@@ -423,8 +435,8 @@ soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\intro.mp3'))
 soundObj.play()
 
 
-
 init(Number_of_objects)
+
 
 #main loop
 while not finished:
@@ -432,11 +444,9 @@ while not finished:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
-                exit(Hscore)
                 finished = True
         if event.type == pygame.QUIT:
             #quit and save part
-            exit(Hscore)
             finished = True
         elif event.type == pygame.MOUSEBUTTONDOWN:
             #mouse event part
@@ -445,12 +455,37 @@ while not finished:
     
     screen.blit(k[int(kadr) ],(0,0))
     kadr = kadr +0.5
-    if kadr >= max_kadr:
-        kadr =0
+    if kadr >= max_kadr-1:
+        exit(Hscore)
+        finished = True
     update()
     pygame.display.flip()
     screen.fill(bl)
-    
+ 
+try:
+    player.stop()
+except:
+    print("vlc")
+finished = False
+kadr = 0
+max_kadr = 620 - 291
 
+soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\on.mp3'))
+soundObj.play()
+
+text = myfont.render(name+" fucked "+str(score)+" slaves", True, wh,bl)
+
+text_rect = text.get_rect(center=(int(W/2), int(H/2)))
+text.set_colorkey(bl)
+
+
+while not finished:
+    clock.tick(FPS)
+    screen.blit(bil[int(kadr) ],(0,0))
+    screen.blit(text, text_rect)
+    kadr = kadr +0.5
+    if kadr >= max_kadr-1:
+        finished = True
+    pygame.display.flip()
 
 pygame.quit()
