@@ -119,8 +119,7 @@ class ball:
         self.y = randint(0,ym)
         self.vx = randint(-vm,vm)
         self.vy = randint(-vm,vm)
-        #self.type = randint(0,1)
-        self.type = 0
+        self.type = randint(0,1)
         if self.type == 0:
             self.color = pl0[randint(0,len(pl0)-1)]
         if self.type == 1:
