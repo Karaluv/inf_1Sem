@@ -19,6 +19,7 @@ max_kadr = 999-153
 
 try:
     url = "https://www.youtube.com/watch?v=B4eSmhr4-2Q"
+    #url = "hhh"
     video = pafy.new(url)
     best = video.getbest()
     playurl = best.url
@@ -29,8 +30,11 @@ try:
     player.set_media(Media)
     player.audio_set_volume(90)
     player.play()
+    play = False
 except:
-    print("vlc is needed")
+    play = True
+    print("vlc is needed, or url is dead auto play is of, presaved track is played")
+
 
 # load score function
 def load():
@@ -84,8 +88,41 @@ pygame.init()
 
 
 
+if play:
+    soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\music.mp3'))
+    soundObj.play()
 
 FPS = 60
+
+thickarrow_strings = (               #sized 24x24
+  " xxxxxxxxx              ",
+  " xx......xx             ",
+  "    xx.....xx           ",
+  "       xxxx             ",
+  "         xxxxx          ",
+  "       xx..x..xx        ",
+  "      xx...x...xx       ",
+  "      xx...x...xx       ",
+  "      xxxx..xxxxx       ",
+  "      xx.......xx       ",
+  "      xx.......xx       ",
+  "      xx.......xxx      ",
+  "       xx........xx     ",
+  "       xx........xx     ",
+  "       xx........xx     ",
+  "       xx........xx     ",
+  "       xx........xx     ",
+  "      xx..........xx    ",
+  "  xxxx............xxxx  ",
+  "xx.........xx.........xx",
+  "xx.........xx.........xx",
+  "xx.........xx.........xx",
+  "  xx....xx   xx.....xx  ",
+  "    xxxx        xxx     ")
+
+cursor, mask = pygame.cursors.compile(thickarrow_strings, "X", ".")
+cursor_sizer = ((24, 24), (7, 11), cursor, mask)
+pygame.mouse.set_cursor(*cursor_sizer)
 
 infoObject = pygame.display.Info()
 
@@ -224,7 +261,7 @@ def tragectory2(self,g,W,H):
     W,H - screen borders
     g - y axiliration
     '''
-    g = int(g / 5) 
+    g = int(g) 
     if self.xmin <= 0:
         self.vx =  abs(self.vx)
         self.x = 0+self.r*2
@@ -481,6 +518,10 @@ text.set_colorkey(bl)
 
 while not finished:
     clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                finished = True
     screen.blit(bil[int(kadr) ],(0,0))
     screen.blit(text, text_rect)
     kadr = kadr +0.5
