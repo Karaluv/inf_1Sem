@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab8\01.py</StartupFile>
+    <StartupFile>lab7\01.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -62,9 +62,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="lab8\01.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="lab7\tst.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="lab9\01T.py">
