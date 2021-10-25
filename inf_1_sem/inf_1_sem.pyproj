@@ -83,11 +83,14 @@
     <Folder Include="lab6\" />
     <Folder Include="lab7\" />
     <Folder Include="lab8\" />
+    <Folder Include="lab8\gachi\" />
     <Folder Include="lab9\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lab3\input.txt" />
     <Content Include="lab4\input.txt" />
+    <Content Include="lab7\score.txt" />
+    <Content Include="lab8\score.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
