@@ -119,7 +119,6 @@ class ball:
         self.y = randint(0,ym)
         self.vx = randint(-vm,vm)
         self.vy = randint(-vm,vm)
-        #self.type = randint(0,1)
         self.type = 0
         if self.type == 0:
             self.color = pl0[randint(0,len(pl0)-1)]
@@ -246,6 +245,8 @@ def update():
 
     textsurface = myfont.render('Your score: '+str(score), False, (0, 0, 0),wh)
 
+    colision()
+
     l =len(balls)
 
     for i in range(l):
@@ -310,6 +311,32 @@ def find(event):
             apa.append(i)
     #returns list of the dead objects
     return apa
+
+#finds all posible pairs
+def create_pairs():
+
+    pairs = []
+
+    for i in range(len(balls)):
+        for j in range(i,len(balls)):
+            pairs.append((i,j))
+    return pairs
+
+#finds if balls collide
+def colision():
+
+    pairs = create_pairs()
+
+    for p in pairs:
+
+        if abs(balls[p[0]].x - balls[p[1]].x)<(balls[p[0]].r + balls[p[1]].r):
+            if abs(balls[p[0]].y - balls[p[1]].y)<(balls[p[0]].r + balls[p[1]].r):
+                if (balls[p[0]].x - balls[p[1]].x)**2 + (balls[p[0]].y - balls[p[1]].y)**2<(balls[p[0]].r + balls[p[1]].r)**2:
+                    balls[p[0]].vx = - balls[p[0]].vx
+                    balls[p[0]].vy = - balls[p[0]].vy
+                    balls[p[1]].vx = - balls[p[1]].vx
+                    balls[p[1]].vy = - balls[p[1]].vy
+
 
 #exit function
 def exit(Hscore):
