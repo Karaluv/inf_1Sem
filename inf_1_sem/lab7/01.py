@@ -335,6 +335,8 @@ def update():
 
     textsurface = myfont.render('FIST THEM ALL '+str(score), False, wh,(0,0,0,255))
 
+    colision()
+
     l =len(balls)
 
     for i in range(l):
@@ -402,6 +404,32 @@ def find(event):
         soundObj = pygame.mixer.Sound(os.path.join(sys.path[0],'gachi\\sorry.mp3'))
         soundObj.play()
     return apa
+
+#finds all posible pairs
+def create_pairs():
+
+    pairs = []
+
+    for i in range(len(balls)):
+        for j in range(i,len(balls)):
+            pairs.append((i,j))
+    return pairs
+
+#finds if balls collide
+def colision():
+
+    pairs = create_pairs()
+
+    for p in pairs:
+
+        if abs(balls[p[0]].x - balls[p[1]].x)<(balls[p[0]].r + balls[p[1]].r):
+            if abs(balls[p[0]].y - balls[p[1]].y)<(balls[p[0]].r + balls[p[1]].r):
+                if (balls[p[0]].x - balls[p[1]].x)**2 + (balls[p[0]].y - balls[p[1]].y)**2<(balls[p[0]].r + balls[p[1]].r)**2:
+                    balls[p[0]].vx = - balls[p[0]].vx
+                    balls[p[0]].vy = - balls[p[0]].vy
+                    balls[p[1]].vx = - balls[p[1]].vx
+                    balls[p[1]].vy = - balls[p[1]].vy
+
 
 #exit function
 def exit(Hscore):
