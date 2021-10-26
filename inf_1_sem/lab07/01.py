@@ -83,131 +83,102 @@ pygame.font.init()
 myfont = pygame.font.SysFont('Comic Sans MS', 40)
 
 #class ball - class of flighing objects
-class ball:
-    '''
-    x - x position
-    y - y position
-    vx - x axis speed
-    vy - y axis speed
-    color - color of object
-    type - type, if 0 - circle,1 - rect
+'''
+x - x position
+y - y position
+vx - x axis speed
+vy - y axis speed
+color - color of object
+type - type, if 0 - circle,1 - rect
 
+xmin - position of left object border
+xmxx - position of right object border
+ymin - position of top object border
+ymxx - position of buttom object border
+
+r = radius of circle or half of rect side
+
+R - r**2
+'''
+
+#intialize starting variables with help of random
+def initball(xm,ym,vm,rm):
+    '''
+    xm - maximum starting x possition
+    ym - maximum starting y possition
+    rm - maximum size of the object
+    vm - maxim x,y speed of the object
+    r = radius of circle or half of rect side
+    '''
+    #self.spawn = randint(20,300)
+    ball = [0]*13
+    ball[11] = 0
+    ball[4] = randint(int(rm/3),rm)
+    ball[0] = randint(0,xm)
+    ball[1] = randint(0,ym)
+    ball[2] = randint(-vm,vm)
+    ball[3] = randint(-vm,vm)
+    ball[12] = 0
+    if ball[12] == 0:
+        ball[6] = pl0[randint(0,len(pl0)-1)]
+    if ball[12] == 1:
+        ball[6] = pl1[randint(0,len(pl1)-1)]
+    ball[5] = ball[4]**2
+
+
+    return ball
+
+
+#calculate some useful properties of an object
+def reass(ball):
+    '''
     xmin - position of left object border
     xmxx - position of right object border
     ymin - position of top object border
     ymxx - position of buttom object border
-
     r = radius of circle or half of rect side
-
     R - r**2
     '''
+    ball[8]=ball[0] +ball[4]
+    ball[7]=ball[0] - ball[4]
+    ball[10] =ball[1] +ball[4]
+    ball[9] = ball[1]-ball[4]
 
-    #intialize starting variables with help of random
-    def __init__(self,xm,ym,vm,rm):
-        '''
-        xm - maximum starting x possition
-        ym - maximum starting y possition
-        rm - maximum size of the object
-        vm - maxim x,y speed of the object
-        r = radius of circle or half of rect side
-        '''
-        global DrawF,TragectoryF
-        #self.spawn = randint(20,300)
-        self.spawn = 0
-        self.r = randint(int(rm/3),rm)
-        self.x = randint(0,xm)
-        self.y = randint(0,ym)
-        self.vx = randint(-vm,vm)
-        self.vy = randint(-vm,vm)
-        self.type = 0
-        if self.type == 0:
-            self.color = pl0[randint(0,len(pl0)-1)]
-        if self.type == 1:
-            self.color = pl1[randint(0,len(pl1)-1)]
-        self.R = self.r**2
-
-        self.draw = DrawF[self.type]
-        self.tragectory = TragectoryF[self.type]
-
-    #calculate some useful properties of an object
-    def reass(self):
-        '''
-        xmin - position of left object border
-        xmxx - position of right object border
-        ymin - position of top object border
-        ymxx - position of buttom object border
-        r = radius of circle or half of rect side
-        R - r**2
-        '''
-        self.xmax=self.x +self.r
-        self.xmin=self.x - self.r
-        self.ymax =self.y +self.r
-        self.ymin = self.y-self.r
-
+    return ball
 
         
     #calculate object next frame position
-def tragectory1(self,vm,W,H):
+def tragectory(ball,vm,W,H):
     '''
     W,H - screen borders
     vm - maximum and minimum random speed
     '''
-    if self.xmin <= 0:
-        self.vx =  randint(0,vm)
-        self.vy =  randint(-vm,vm)
-    if self.xmax >= W:
-        self.vx =  randint(-vm,0)
-        self.vy =  randint(-vm,vm)
-    if self.ymin <= 0:
-        self.vy =  randint(0,vm)
-        self.vx =  randint(-vm,vm)
-    if self.ymax >= H:
-        self.vy =  randint(-vm,0)
-        self.vx =  randint(-vm,vm)
+    if ball[7] <= 0:
+        ball[2] =  randint(0,vm)
+        ball[3] =  randint(-vm,vm)
+    if ball[8] >= W:
+        ball[2] =  randint(-vm,0)
+        ball[3] =  randint(-vm,vm)
+    if ball[9] <= 0:
+        ball[3] =  randint(0,vm)
+        ball[2] =  randint(-vm,vm)
+    if ball[10] >= H:
+        ball[3] =  randint(-vm,0)
+        ball[2] =  randint(-vm,vm)
 
-    self.x = self.vx + self.x
-    self.y = self.vy + self.y
+    ball[0] = ball[2] + ball[0]
+    ball[1] = ball[3] + ball[1]
 
-def tragectory2(self,g,W,H):
-    '''
-    W,H - screen borders
-    g - y axiliration
-    '''
-    if self.xmin <= 0:
-        self.vx =  abs(self.vx)
-        self.x = 0+self.r*2
-    if self.xmax >= W:
-        self.vx =  -abs(self.vx)
-        self.x = W-self.r*2
-    if self.ymin <= 0:
-        self.vy =  abs(self.vy)
-        self.y = 0+self.r*2
-    if self.ymax >= H:
-        self.vy =  -abs(self.vy)
-        self.y = H-self.r*2
-
-    self.vy = self.vy + g
-
-    self.x = self.vx + self.x
-    self.y = self.vy + self.y
-
-TragectoryF = [tragectory1,tragectory2]
+    return ball
 
 #draw object function
-def draw1(self):
+def draw(ball):
     '''
     type - type of an object
     '''
-    pygame.draw.circle(screen,self.color,(self.x,self.y),self.r,0)
+    pygame.draw.circle(screen,ball[6],(ball[0],ball[1]),ball[4],0)
 
 
-def draw2(self):
-    '''
-    type - type of an object
-    '''
-    pygame.draw.rect(screen,self.color,(self.xmin,self.ymin,2*self.r,2*self.r),0)
-
-DrawF = [draw1,draw2]
 
 #initialize all objects on screen
 def init(L):
@@ -218,8 +189,8 @@ def init(L):
     W,H - screen borders
     '''
     for i in range(L):
-        balls.append(ball(W,H,Speed,Size))
-        balls[i].reass()
+        balls.append(initball(W,H,Speed,Size))
+        balls[i] = reass(balls[i])
 
 #initialize new ball after the death previous
 def new_ball():
@@ -229,8 +200,8 @@ def new_ball():
     Size - maximum object size
     '''
     global W,H,Size,Speed
-    ballf = ball(W,H,Speed,Size)
-    ballf.reass()
+    ballf = initball(W,H,Speed,Size)
+    ballf = reass(ballf)
     return ballf
 
 
@@ -245,17 +216,17 @@ def update():
 
     textsurface = myfont.render('Your score: '+str(score), False, (0, 0, 0),wh)
 
-    colision()
+    #colision()
 
     l =len(balls)
 
     for i in range(l):
-        if balls[i].spawn > 0:
-            balls[i].spawn -= 1
+        if balls[i][11] > 0:
+            balls[i][1] -= 1
         else:
-            balls[i].reass()
-            balls[i].tragectory(balls[i],2,W,H)
-            balls[i].draw(balls[i])
+            balls[i] = reass(balls[i])
+            balls[i] = tragectory(balls[i],2,W,H)
+            draw(balls[i])
         
     screen.blit(textsurface,(20,20))
    
@@ -268,11 +239,11 @@ def kill(apa):
     global score
 
     for i in apa:
-        if balls[i].spawn == 0:
-            if balls[i].type == 1:
+        if balls[i][11] == 0:
+            if balls[i][12] == 1:
                 score = score+30
 
-            if balls[i].type == 0:
+            if balls[i][12] == 0:
                 score = score + 60
 
             balls[i] = new_ball()
@@ -292,22 +263,22 @@ def find(event):
     apa = []
     #checks x cordintes
     for i in aps:
-        if balls[i].xmin < x:
-            if balls[i].xmax > x:
+        if balls[i][7] < x:
+            if balls[i][8] > x:
                 apx.append(i)
     #checks y cordinates 
     for i in apx:
-        if balls[i].ymin < y:
-            if balls[i].ymax > y:
+        if balls[i][9] < y:
+            if balls[i][10] > y:
                 apy.append(i)
     # checks distance from center for circles and applies changes for rects
     for i in apy:
-        if balls[i].type == 0:
-            l = (balls[i].x - x)**2 + (balls[i].y - y)**2
+        if balls[i][12] == 0:
+            l = (balls[i][0] - x)**2 + (balls[i][1] - y)**2
 
-            if l<balls[i].R:
+            if l<balls[i][5]:
                 apa.append(i)
-        if balls[i].type ==1:
+        if balls[i][12] ==1:
             apa.append(i)
     #returns list of the dead objects
     return apa

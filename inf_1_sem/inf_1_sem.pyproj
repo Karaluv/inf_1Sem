@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab7\01.py</StartupFile>
+    <StartupFile>lab09\01.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,72 +22,79 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="inf_1_sem.py" />
-    <Compile Include="lab1\2.py" />
-    <Compile Include="lab1\3.py" />
-    <Compile Include="lab1\4.py" />
-    <Compile Include="lab1\5.py" />
-    <Compile Include="lab1\5_1.py" />
-    <Compile Include="lab1\6.py" />
-    <Compile Include="lab2\02.py" />
-    <Compile Include="lab2\03.py" />
-    <Compile Include="lab2\04.py" />
-    <Compile Include="lab2\05.py" />
-    <Compile Include="lab2\06.py" />
-    <Compile Include="lab2\07.py" />
-    <Compile Include="lab2\08.py" />
-    <Compile Include="lab2\09.py" />
-    <Compile Include="lab2\10.py" />
-    <Compile Include="lab2\11.py" />
-    <Compile Include="lab2\12.py" />
-    <Compile Include="lab2\13.py" />
-    <Compile Include="lab2\14.py" />
-    <Compile Include="lab3\01.py" />
-    <Compile Include="lab3\02.py" />
-    <Compile Include="lab3\03.py" />
-    <Compile Include="lab3\04.py" />
-    <Compile Include="lab3\05.py" />
-    <Compile Include="lab4\01.py" />
-    <Compile Include="lab4\02.py" />
-    <Compile Include="lab4\03.py" />
-    <Compile Include="lab4\04.py" />
-    <Compile Include="lab4\05.py" />
-    <Compile Include="lab5\01.py" />
-    <Compile Include="lab5\02.py">
+    <Compile Include="lab01\2.py" />
+    <Compile Include="lab01\3.py" />
+    <Compile Include="lab01\4.py" />
+    <Compile Include="lab01\5.py" />
+    <Compile Include="lab01\5_1.py" />
+    <Compile Include="lab01\6.py" />
+    <Compile Include="lab02\02.py" />
+    <Compile Include="lab02\03.py" />
+    <Compile Include="lab02\04.py" />
+    <Compile Include="lab02\05.py" />
+    <Compile Include="lab02\06.py" />
+    <Compile Include="lab02\07.py" />
+    <Compile Include="lab02\08.py" />
+    <Compile Include="lab02\09.py" />
+    <Compile Include="lab02\10.py" />
+    <Compile Include="lab02\11.py" />
+    <Compile Include="lab02\12.py" />
+    <Compile Include="lab02\13.py" />
+    <Compile Include="lab02\14.py" />
+    <Compile Include="lab03\01.py" />
+    <Compile Include="lab03\02.py" />
+    <Compile Include="lab03\03.py" />
+    <Compile Include="lab03\04.py" />
+    <Compile Include="lab03\05.py" />
+    <Compile Include="lab04\01.py" />
+    <Compile Include="lab04\02.py" />
+    <Compile Include="lab04\03.py" />
+    <Compile Include="lab04\04.py" />
+    <Compile Include="lab04\05.py" />
+    <Compile Include="lab05\01.py" />
+    <Compile Include="lab05\02.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab6\3.1.py">
+    <Compile Include="lab06\3.1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab7\01.py">
+    <Compile Include="lab07\01.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab8\01.py">
+    <Compile Include="lab08\01.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab9\01T.py">
+    <Compile Include="lab09\01.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab9\02T.py">
+    <Compile Include="lab09\save_load.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab9\03T.py">
+    <Compile Include="lab09\shell.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lab09\tank.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lab09\target.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="lab1\" />
-    <Folder Include="lab2\" />
-    <Folder Include="lab3\" />
-    <Folder Include="lab4\" />
-    <Folder Include="lab5\" />
-    <Folder Include="lab6\" />
-    <Folder Include="lab7\" />
-    <Folder Include="lab8\" />
-    <Folder Include="lab9\" />
+    <Folder Include="lab01\" />
+    <Folder Include="lab02\" />
+    <Folder Include="lab03\" />
+    <Folder Include="lab04\" />
+    <Folder Include="lab05\" />
+    <Folder Include="lab06\" />
+    <Folder Include="lab07\" />
+    <Folder Include="lab08\" />
+    <Folder Include="lab09\" />
+    <Folder Include="lab10\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lab3\input.txt" />
-    <Content Include="lab4\input.txt" />
+    <Content Include="lab03\input.txt" />
+    <Content Include="lab04\input.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
