@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab09\01.py</StartupFile>
+    <StartupFile>lab05\part1\01.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -28,73 +28,77 @@
     <Compile Include="lab01\5.py" />
     <Compile Include="lab01\5_1.py" />
     <Compile Include="lab01\6.py" />
-    <Compile Include="lab02\02.py" />
-    <Compile Include="lab02\03.py" />
-    <Compile Include="lab02\04.py" />
-    <Compile Include="lab02\05.py" />
-    <Compile Include="lab02\06.py" />
-    <Compile Include="lab02\07.py" />
-    <Compile Include="lab02\08.py" />
-    <Compile Include="lab02\09.py" />
-    <Compile Include="lab02\10.py" />
-    <Compile Include="lab02\11.py" />
-    <Compile Include="lab02\12.py" />
-    <Compile Include="lab02\13.py" />
-    <Compile Include="lab02\14.py" />
-    <Compile Include="lab03\01.py" />
-    <Compile Include="lab03\02.py" />
-    <Compile Include="lab03\03.py" />
-    <Compile Include="lab03\04.py" />
-    <Compile Include="lab03\05.py" />
-    <Compile Include="lab04\01.py" />
-    <Compile Include="lab04\02.py" />
-    <Compile Include="lab04\03.py" />
-    <Compile Include="lab04\04.py" />
-    <Compile Include="lab04\05.py" />
-    <Compile Include="lab05\01.py" />
-    <Compile Include="lab05\02.py">
+    <Compile Include="lab02\part1\02.py" />
+    <Compile Include="lab02\part1\03.py" />
+    <Compile Include="lab02\part1\04.py" />
+    <Compile Include="lab02\part1\05.py" />
+    <Compile Include="lab02\part1\06.py" />
+    <Compile Include="lab02\part1\07.py" />
+    <Compile Include="lab02\part1\08.py" />
+    <Compile Include="lab02\part1\09.py" />
+    <Compile Include="lab02\part1\10.py" />
+    <Compile Include="lab02\part1\11.py" />
+    <Compile Include="lab02\part1\12.py" />
+    <Compile Include="lab02\part1\13.py" />
+    <Compile Include="lab02\part1\14.py" />
+    <Compile Include="lab02\part1\01.py" />
+    <Compile Include="lab02\part2\02.py" />
+    <Compile Include="lab02\part2\03.py" />
+    <Compile Include="lab02\part2\04.py" />
+    <Compile Include="lab02\part2\05.py" />
+    <Compile Include="lab02\part2_another\01.py" />
+    <Compile Include="lab02\part2_another\02.py" />
+    <Compile Include="lab02\part2_another\03.py" />
+    <Compile Include="lab02\part2_another\04.py" />
+    <Compile Include="lab02\part2_another\05.py" />
+    <Compile Include="lab03\part1\01.py" />
+    <Compile Include="lab03\part1\02.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab06\3.1.py">
+    <Compile Include="lab03\part2\3.1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab07\01.py">
+    <Compile Include="lab04\part1\01.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab08\01.py">
+    <Compile Include="lab04\part2\01.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab09\01.py">
+    <Compile Include="lab05\part1\01.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab09\save_load.py">
+    <Compile Include="lab05\part1\save_load.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab09\shell.py">
+    <Compile Include="lab05\part1\shell.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab09\tank.py">
+    <Compile Include="lab05\part1\tank.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="lab09\target.py">
+    <Compile Include="lab05\part1\target.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lab01\" />
+    <Folder Include="lab02\part1\" />
     <Folder Include="lab02\" />
+    <Folder Include="lab02\part2\" />
+    <Folder Include="lab02\part2_another\" />
+    <Folder Include="lab03\part1\" />
+    <Folder Include="lab03\part2\" />
+    <Folder Include="lab04\part1\" />
+    <Folder Include="lab04\part2\" />
+    <Folder Include="lab05\part1\" />
+    <Folder Include="lab05\part2\" />
     <Folder Include="lab03\" />
     <Folder Include="lab04\" />
     <Folder Include="lab05\" />
-    <Folder Include="lab06\" />
-    <Folder Include="lab07\" />
-    <Folder Include="lab08\" />
-    <Folder Include="lab09\" />
-    <Folder Include="lab10\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lab03\input.txt" />
-    <Content Include="lab04\input.txt" />
+    <Content Include="lab02\part2\input.txt" />
+    <Content Include="lab02\part2_another\input.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
