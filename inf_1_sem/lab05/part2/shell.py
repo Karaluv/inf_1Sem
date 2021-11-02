@@ -50,8 +50,8 @@ class shell(shit):
         self.r = r
         self.x = x
         self.y = y
-        self.vx = vx/3
-        self.vy = vy/3
+        self.vx = vx
+        self.vy = vy
         self.type = type
         self.skip = skip
         if self.type == 0:
@@ -79,11 +79,16 @@ class shell(shit):
         W,H = self.W,self.H
         k = 0.25
 
+        l = ((self.x-W//2)**2+(self.y-H//2)**2)**0.5
+        l = l/300
 
-        if self.type == 0 or self.type == 1:
-            self.vy += 0.1/self.skip
-        if self.type == 2:
-            self.vy += -0.1/self.skip
+        if l>10:
+            if self.type == 0 or self.type == 1:
+                self.vx += 10/l*(-self.x+W//2)/self.skip/10
+                self.vy += 10/l*(-self.y + H//2)/self.skip/10
+            if self.type == 2:
+                self.vx += 10/l*(self.x-W//2)/self.skip/10
+                self.vy += 10/l*(self.y - H//2)/self.skip/10
         
         if self.xmin <= 0:
             self.vx =  - self.vx*k

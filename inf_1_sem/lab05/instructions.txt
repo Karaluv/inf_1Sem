@@ -1,0 +1,20 @@
+part1:
+0 - first type of ammo
+1 - second type of ammo
+
+targets are flying around the center
+
+to reload game press R
+
+
+part2:
+
+wasd to move the first tank and left shift to shoot
+
+arrors and right shift to control the second tank
+
+to choose ammo use num pad and numbers under the f-keys
+
+to use "bombochki" press space
+
+to reload game press R

@@ -58,3 +58,63 @@ doyoffo
 30
 30
 30
+3
+Score first tank: 3; Score first tank: 0
+3
+60
+0
+30
+Score first tank: 4; Score second tank: 5
+3
+60
+0
+30
+Score first tank: 0; Score second tank: 0
+3
+60
+0
+kllk
+Score first tank: 0; Score second tank: 0
+6
+6
+6
+6
+Score first tank: 9; Score second tank: 0
+6
+5
+6
+0
+Score first tank: 4; Score second tank: 2
+3
+30
+0
+30
+Score first tank: 0; Score second tank: 2
+3
+70
+0
+30
+Score first tank: 0; Score second tank: 17
+30
+30
+30
+dddd30
+Score first tank: 0; Score second tank: 3
+3
+90
+0
+3
+Score first tank: 14; Score second tank: 20
+3
+30
+0
+jj
+Score first tank: 5; Score second tank: 20
+3
+40
+10
+3
+Score first tank: 22; Score second tank: 111
+3
+30
+3

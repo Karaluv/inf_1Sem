@@ -10,7 +10,7 @@ import math
 
 def exit(Hscore):
     Hscore.append(name)
-    Hscore.append('Score first tank: '+str(score[0]))
+    Hscore.append('Score first tank: '+str(score[0])+'; Score second tank: '+str(score[1]))
     Hscore.append(Number_of_objects)
     Hscore.append(Size)
     Hscore.append(Speed)
@@ -109,6 +109,7 @@ myfont = pygame.font.SysFont('Comic Sans MS', 40)
 def start():
         #set start score
     global targets,shells,tanks,bombs,t0,t1,score,number_of_rounds,name,Number_of_objects,Size,Speed
+    
     screen.fill(bl)
     pygame.display.update()
     number_of_rounds = 0
@@ -147,6 +148,8 @@ def init(L_target,L_tank):
     tanks.append(tank(20,H-20,0,0,20,W,H,skip,0))
     tanks[-1].reass()
 
+    tanks.append(tank(W-20,20,0,0,20,W,H,skip,1))
+    tanks[-1].reass()
 
 
 #initialize new ball after the death previous
@@ -187,7 +190,7 @@ def update(drawing):
     score - players score
     '''
 
-    textsurface = myfont.render('Score first tank: '+str(score[0]), False, (0, 0, 0),wh)
+    textsurface = myfont.render('Score first tank: '+str(score[0])+'; Score second tank: '+str(score[1]), False, (0, 0, 0),wh)
 
     death_list = []
 
@@ -227,12 +230,13 @@ def update(drawing):
 
     kill(death_list)
     tanks[0].reass()
-    x,y = pygame.mouse.get_pos()
-    a = math.atan2(-y + tanks[0].y, x - tanks[0].x)
-    tanks[0].a = a
     tanks[0].Move()
     if drawing:
         tanks[0].Draw(screen,tanks[0].power)
+    tanks[1].reass()
+    tanks[1].Move()
+    if drawing:
+        tanks[1].Draw(screen,tanks[1].power)
 
     screen.blit(textsurface,(20,20))
    
@@ -273,6 +277,8 @@ def kill(death_list):
 
             if type(t) == tank:
                 if not sh:
+                    if t == tanks[1]:
+                        score[0]+=10
                     if t == tanks[0]:
                         score[1]+=10
                     sh = False
@@ -387,31 +393,58 @@ while not finished:
         if tanks[0].power<33:
             tanks[0].power+=1/skip
 
+    if tanks[1].power_up:
+        if tanks[1].power<33:
+            tanks[1].power+=1/skip
 
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            tanks[0].power_up = True
-            tanks[0].power = 0
-        if event.type == pygame.MOUSEBUTTONUP:
-            tanks[0].power_up = False
-            shoot(tanks[0])
-        
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
                 #exit(Hscore)
                 finished = True
+            if event.key == pygame.K_w:
+                tanks[0].da =0.05
+            if event.key == pygame.K_s:
+                tanks[0].da =-0.05
+
+            if event.key == pygame.K_LSHIFT :
+                #mouse event part
+                if tanks[0].power<33:
+                    tanks[0].power+=1
+                    tanks[0].power_up = True
+            if event.key == pygame.K_d:
+                tanks[0].vx = 5
+            if event.key == pygame.K_a:
+                tanks[0].vx = -5
 
 
 
+            if event.key == pygame.K_DOWN:
+                tanks[1].da =0.05
+            if event.key == pygame.K_UP:
+                tanks[1].da =-0.05
 
-
+            if event.key == pygame.K_RSHIFT :
+                #mouse event part
+                if tanks[1].power<33:
+                    tanks[1].power+=1
+                    tanks[1].power_up = True
+            if event.key == pygame.K_RIGHT:
+                tanks[1].vx = 5
+            if event.key == pygame.K_LEFT:
+                tanks[1].vx = -5
 
             if event.key == pygame.K_0:
                 tanks[0].shell_type = 0
             if event.key == pygame.K_1:
                 tanks[0].shell_type = 2
+            if event.key == pygame.K_KP0:
+                tanks[1].shell_type = 0
+            if event.key == pygame.K_KP1:
+                tanks[1].shell_type = 2
 
-
+            if event.key == pygame.K_SPACE:
+                spawn_bomb(pygame.mouse.get_pos())
             if event.key == pygame.K_r:
                 exit(Hscore)
                 start()
@@ -420,9 +453,42 @@ while not finished:
             #quit and save part
             #exit(Hscore)
             finished = True
+        if event.type == pygame.KEYUP:
+
+            if event.key == pygame.K_d:
+                tanks[0].vx = 0
+            if event.key == pygame.K_a:
+                tanks[0].vx = 0
+
+            if event.key == pygame.K_w:
+                tanks[0].da =0
+            if event.key == pygame.K_s:
+                tanks[0].da =0
+
+            if event.key == pygame.K_LSHIFT :
+                if tanks[0].power != 0:
+                    if tanks[0].power_up:
+                        shoot(tanks[0])
+                        tanks[0].power = 0
+                tanks[0].power_up = False
 
 
+            if event.key == pygame.K_LEFT:
+                tanks[1].vx = 0
+            if event.key == pygame.K_RIGHT:
+                tanks[1].vx = 0
 
+            if event.key == pygame.K_DOWN:
+                tanks[1].da =0
+            if event.key == pygame.K_UP:
+                tanks[1].da =0
+
+            if event.key == pygame.K_RSHIFT :
+                if tanks[1].power != 0:
+                    if tanks[1].power_up:
+                        shoot(tanks[1])
+                        tanks[1].power = 0
+                tanks[1].power_up = False
 
 
         #if event.type == pygame.

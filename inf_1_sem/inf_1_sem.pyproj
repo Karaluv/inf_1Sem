@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab05\gachiShariki\01.py</StartupFile>
+    <StartupFile>lab05\part1\01.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -65,6 +65,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="lab05\gachiShariki\01.py" />
+    <Compile Include="lab05\part2\01.py" />
+    <Compile Include="lab05\part2\bomb.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lab05\part2\save_load.py" />
+    <Compile Include="lab05\part2\shell.py" />
+    <Compile Include="lab05\part2\shit.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="lab05\part2\tank.py" />
+    <Compile Include="lab05\part2\target.py" />
     <Compile Include="lab05\part1\01.py">
       <SubType>Code</SubType>
     </Compile>
@@ -95,8 +106,8 @@
     <Folder Include="lab05\gachiShariki\Billy\" />
     <Folder Include="lab05\gachiShariki\gachi\" />
     <Folder Include="lab05\gachiShariki\kadr\" />
-    <Folder Include="lab05\part1\" />
     <Folder Include="lab05\part2\" />
+    <Folder Include="lab05\part1\" />
     <Folder Include="lab03\" />
     <Folder Include="lab04\" />
     <Folder Include="lab05\" />
@@ -1485,6 +1496,7 @@
     <Content Include="lab05\gachiShariki\kadr\01161.jpg" />
     <Content Include="lab05\gachiShariki\kadr\01162.jpg" />
     <Content Include="lab05\gachiShariki\score.txt" />
+    <Content Include="lab05\instructions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
