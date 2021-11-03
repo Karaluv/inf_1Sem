@@ -13,7 +13,7 @@ wh = (255,255,255)
 
 pl0 = [cr,cb,cy]
 pl1 = [cg,cm,cc]
-
+#defines one of the main classes that rools the classes of targets bombs and shells
 class shit:
     '''
     x - x position

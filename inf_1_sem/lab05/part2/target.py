@@ -15,7 +15,7 @@ wh = (255,255,255)
 
 pl0 = [cr,cb,cy]
 pl1 = [cg,cm,cc]
-
+#defines class of a target
 class target(shit):
 
     def __init__(self,x,y,vx,vy,r,W,H,skip,type):

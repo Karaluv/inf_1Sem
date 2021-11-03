@@ -13,7 +13,7 @@ wh = (255,255,255)
 
 pl0 = [cr,cb,cy]
 pl1 = [cg,cm,cc]
-
+#subclass of a ball like object/ defines bullet type
 class shell(shit):
     '''
     x - x position

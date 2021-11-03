@@ -105,9 +105,10 @@ score = [0,0]
 pygame.font.init() 
 myfont = pygame.font.SysFont('Comic Sans MS', 40)
 
-
+#function that defines variables durin game restart
 def start():
-        #set start score
+
+    #set start score
     global targets,shells,tanks,bombs,t0,t1,score,number_of_rounds,name,Number_of_objects,Size,Speed
     
     screen.fill(bl)
@@ -165,7 +166,7 @@ def new_shell(x,y,vx,vy):
     return shellf
 
 
-#initialize new ball after the death previous
+#initialize new target after the death previous
 def new_target(xmin,ymin,xmax,ymax,vx,vy,r):
     '''
     Speed - maximum object speed
@@ -501,7 +502,7 @@ while not finished:
     if drawing:
         pygame.display.update()
         screen.fill(bl)
-    
+   #save score
 exit(Hscore)
 
 pygame.quit()

@@ -15,7 +15,7 @@ wh = (255,255,255)
 
 pl0 = [cr,cb,cy]
 pl1 = [cg,cm,cc]
-
+#subclass of a ball defines bombs that are dropping down
 class bomb(shit):
 
     def __init__(self,x,y,vx,vy,r,W,H,skip):

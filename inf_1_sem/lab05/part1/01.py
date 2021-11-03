@@ -105,7 +105,7 @@ score = [0,0]
 pygame.font.init() 
 myfont = pygame.font.SysFont('Comic Sans MS', 40)
 
-
+#function that launches during the restart
 def start():
         #set start score
     global targets,shells,tanks,bombs,t0,t1,score,number_of_rounds,name,Number_of_objects,Size,Speed
@@ -387,7 +387,7 @@ while not finished:
         if tanks[0].power<33:
             tanks[0].power+=1/skip
 
-
+    #control part
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             tanks[0].power_up = True
