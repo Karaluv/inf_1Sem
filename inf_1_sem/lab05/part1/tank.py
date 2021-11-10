@@ -84,7 +84,11 @@ class tank:
         if self.reload>0:
             self.reload -= 1
 
-    def Draw(self,screen,power):
+    def Draw(self,screen: pygame.surface,power: int):
+
+        '''
+        power = power of the tank
+        '''
 
         x0,y0 = self.x,self.y
 
@@ -110,6 +114,9 @@ class tank:
 
 
     def draw_gun(self,screen,power):
+        '''
+        power = power of the tank
+        '''
 
         an = self.a
         pygame.draw.polygon(screen, self.color, [(self.x + int(5*math.cos(an + 1.57)),self.y - int(5*math.sin(an + 1.57))), 

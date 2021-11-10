@@ -118,3 +118,8 @@ Score first tank: 22; Score second tank: 111
 3
 30
 3
+ff
+Score first tank: 23; Score second tank: 0
+3
+40
+1

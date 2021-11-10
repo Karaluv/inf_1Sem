@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b1a24c78-0062-47eb-8112-4441f531fc37</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>lab05\part1\01.py</StartupFile>
+    <StartupFile>lab05\part2\01.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -91,6 +91,11 @@
     <Compile Include="lab05\part1\target.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="lab06\solar_sys-main\solar_input.py" />
+    <Compile Include="lab06\solar_sys-main\solar_main.py" />
+    <Compile Include="lab06\solar_sys-main\solar_model.py" />
+    <Compile Include="lab06\solar_sys-main\solar_objects.py" />
+    <Compile Include="lab06\solar_sys-main\solar_vis.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="lab01\" />
@@ -111,6 +116,8 @@
     <Folder Include="lab03\" />
     <Folder Include="lab04\" />
     <Folder Include="lab05\" />
+    <Folder Include="lab06\" />
+    <Folder Include="lab06\solar_sys-main\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lab02\part2\input.txt" />
@@ -1497,6 +1504,9 @@
     <Content Include="lab05\gachiShariki\kadr\01162.jpg" />
     <Content Include="lab05\gachiShariki\score.txt" />
     <Content Include="lab05\instructions.txt" />
+    <Content Include="lab06\solar_sys-main\double_star.txt" />
+    <Content Include="lab06\solar_sys-main\one_satellite.txt" />
+    <Content Include="lab06\solar_sys-main\solar_system.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

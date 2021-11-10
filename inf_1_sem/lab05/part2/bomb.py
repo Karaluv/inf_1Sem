@@ -17,18 +17,19 @@ pl0 = [cr,cb,cy]
 pl1 = [cg,cm,cc]
 #subclass of a ball defines bombs that are dropping down
 class bomb(shit):
-
+    #takes arguments and send it to shit
     def __init__(self,x,y,vx,vy,r,W,H,skip):
         super().__init__(x,y,vx,vy,r,W,H,skip,0)
         self.color = (255,255,255)
 
-
+    #moves ball it self
     def Move(self):
 
         '''
         W,H - screen borders
         vm - maximum and minimum random speed
         '''
+
         x,y = self.x,self.y
         W,H = self.W,self.H
         if self.xmin <= 0:

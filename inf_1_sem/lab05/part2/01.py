@@ -8,7 +8,10 @@ from tank import tank
 from bomb import bomb
 import math
 
-def exit(Hscore):
+def exit(Hscore: list):
+    '''
+    Hscore -score table to save
+    '''
     Hscore.append(name)
     Hscore.append('Score first tank: '+str(score[0])+'; Score second tank: '+str(score[1]))
     Hscore.append(Number_of_objects)
